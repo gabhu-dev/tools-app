@@ -28,7 +28,7 @@ const result = computed(() => {
 
 <template>
   <div>
-    <p>Primera banda</p>
+    <p class="font-bold">Primera banda</p>
     <select v-model="formState.first_band">
       <option v-for="item in BAND_COLORS" :value="item.value.band">
         {{ item.name }}
