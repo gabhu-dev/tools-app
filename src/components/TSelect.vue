@@ -1,9 +1,15 @@
 <template>
-  <div class="t-select" ref="selectRef">
-    <label class="t-select-box" @click="toggleDropdown">
+  <div class="relative" ref="selectRef">
+    <!--Selector label-->
+    <div class="t-select-label">
+      <label for="field">Campo</label>
+    </div>
+    <!--Selector box-->
+    <div id="field" class="t-select" @click="toggleDropdown">
       <span>{{ selectedLabel }}</span>
       <span class="icon">▼</span>
-    </label>
+    </div>
+    <!--Opciones-->
     <ul v-if="isOpen" class="t-select-dropdown">
       <li
         v-for="option in options"
@@ -66,24 +72,4 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style scoped>
-.t-select {
-  @apply relative;
-  width: 200px;
-}
-.t-select-box {
-  @apply flex justify-between items-center p-2 border border-gray-400 rounded-sm cursor-pointer relative;
-}
-.icon {
-  font-size: 14px;
-}
-.t-select-dropdown {
-  @apply absolute w-full border border-gray-40 bg-white list-none p-0 m-0 top-full left-0;
-}
-.t-select-dropdown .t-select-dropdown-option {
-  @apply p-2 cursor-pointer;
-}
-.t-select-dropdown .t-select-dropdown-option:hover {
-  @apply bg-white;
-}
-</style>
+<style scoped></style>
