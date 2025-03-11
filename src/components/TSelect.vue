@@ -1,12 +1,20 @@
 <template>
-  <div class="relative" ref="selectRef">
+  <div class="relative w-max" ref="selectRef">
     <!--Selector label-->
     <div class="t-select-label">
       <label for="field">Campo</label>
     </div>
     <!--Selector box-->
-    <div id="field" class="t-select" @click="toggleDropdown">
-      <span>{{ selectedLabel }}</span>
+    <div
+      id="field"
+      class="t-select-box"
+      :class="{ 't-select-box-active': isOpen }"
+      @click="toggleDropdown"
+    >
+      <span v-if="selectedLabel" class="t-select-text">
+        {{ selectedLabel }}
+      </span>
+      <span v-else class="t-select-placeholder">{{ placeholder }}</span>
       <span class="icon">▼</span>
     </div>
     <!--Opciones-->
@@ -40,12 +48,13 @@ const options = ref<Option[]>([
 const isOpen = ref(false);
 const selectedValue = ref("");
 const selectRef = ref<HTMLElement | null>(null);
+const placeholder = "Seleccionar";
 
 const selectedLabel = computed(() => {
   const selected = options.value.find(
     (option) => option.value === selectedValue.value
   );
-  return selected ? selected.label : "Seleccionar";
+  return selected?.label;
 });
 
 const toggleDropdown = () => {

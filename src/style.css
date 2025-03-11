@@ -14,18 +14,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.t-select {
-  @apply flex justify-between items-center p-2 border border-gray-400 rounded-sm cursor-pointer relative;
+.t-select-box {
+  @apply flex justify-between items-center px-4 py-2 border border-indigo-500 rounded-lg cursor-pointer relative;
+}
+.t-select-box:hover {
+  @apply border-indigo-600;
+}
+.t-select-box-active {
+  box-shadow: 0 0 0 2px rgba(126, 134, 251, 0.1);
 }
 .t-select-label {
   @apply mb-1;
 }
+.t-select-text,
+.t-select-placeholder {
+  @apply mr-4;
+}
+.t-select-placeholder {
+  @apply text-gray-500;
+}
 .t-select-dropdown {
-  @apply border rounded mt-1;
+  @apply rounded-lg mt-1 overflow-hidden absolute w-full;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 .t-select-dropdown-option {
-  @apply px-4 py-1;
+  @apply px-4 py-2 cursor-pointer bg-white w-full;
 }
 .t-select-dropdown-option:hover {
-  @apply bg-amber-300;
+  @apply bg-indigo-100;
 }
