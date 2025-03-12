@@ -23,6 +23,12 @@
 .t-select-box-active {
   box-shadow: 0 0 0 2px rgba(126, 134, 251, 0.1);
 }
+.t-select-icon {
+  transition: all 0.3s;
+}
+.t-select-box-active .t-select-icon {
+  transform: rotate(180deg);
+}
 .t-select-label {
   @apply mb-1;
 }

@@ -15,9 +15,8 @@
         {{ selectedLabel }}
       </span>
       <span v-else class="t-select-placeholder">{{ placeholder }}</span>
-      <span class="icon">
-        <BiChevronUp v-if="isOpen" />
-        <BiChevronDown v-else />
+      <span class="t-select-icon">
+        <BiChevronDown />
       </span>
     </div>
     <!--Opciones-->
@@ -36,7 +35,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-import { BiChevronDown, BiChevronUp } from "vue-icons-plus/bi";
+import { BiChevronDown } from "vue-icons-plus/bi";
 
 type Option = {
   label: string;
