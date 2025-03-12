@@ -6,6 +6,7 @@ import {
   TOLERANCE_COLORS,
 } from "../@constants";
 import TSelect from "./TSelect.vue";
+import TButton from "./TButton.vue";
 
 interface IFormState {
   first_band?: number;
@@ -30,6 +31,7 @@ const result = computed(() => {
 <template>
   <div>
     <TSelect />
+    <TButton />
     <p class="font-bold">Primera banda</p>
     <select v-model="formState.first_band">
       <option v-for="item in BAND_COLORS" :value="item.value.band">

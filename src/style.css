@@ -14,6 +14,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*SELECTOR STYLES*/
 .t-select-box {
   @apply flex justify-between items-center px-4 py-2 border border-indigo-500 rounded-lg cursor-pointer relative;
 }
@@ -49,4 +50,13 @@
 }
 .t-select-dropdown-option:hover {
   @apply bg-indigo-100;
+}
+
+/*BUTTON STYLES*/
+.t-button {
+  @apply relative z-30 px-4 py-2 font-semibold rounded-lg border-none outline-none bg-indigo-500 text-white cursor-pointer transition-all duration-150 overflow-hidden;
+  @apply after:-z-20 after:absolute after:h-1 after:w-1 after:bg-indigo-600 after:left-5 after:bottom-0 after:translate-y-full after:rounded-md after:transition-all after:duration-350;
+  @apply hover:px-6 hover:bg-indigo-400;
+  @apply hover:after:scale-[200] after:hover:transition-all after:hover:duration-350;
+  @apply active:bg-indigo-600;
 }
