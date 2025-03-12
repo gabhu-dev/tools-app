@@ -11,54 +11,75 @@ import TButton from "./TButton.vue";
 interface IFormState {
   first_band?: number;
   second_band?: number;
-  multitplier?: number;
+  multiplier?: number;
   tolerance?: number;
 }
 
 const formState = reactive<IFormState>({
   first_band: undefined,
   second_band: undefined,
-  multitplier: undefined,
+  multiplier: undefined,
   tolerance: undefined,
 });
 
 const result = computed(() => {
   const bands = Number(`${formState.first_band}${formState.second_band}`);
-  return bands * (formState.multitplier || 1);
+  return bands * (formState.multiplier || 1);
 });
+
+const options = (type: "band" | "multiplier" | "tolerance") => {
+  switch (type) {
+    case "band":
+      return BAND_COLORS.map((band) => {
+        return {
+          label: band.name,
+          value: band.value.band,
+        };
+      });
+    case "multiplier":
+      return MULTIPLIER_COLORS.map((item) => {
+        return {
+          label: item.name,
+          value: item.value.multiplier,
+        };
+      });
+    case "tolerance":
+      return TOLERANCE_COLORS.map((item) => {
+        return {
+          label: item.name,
+          value: item.value.tolerance,
+        };
+      });
+
+    default:
+      return [];
+  }
+};
 </script>
 
 <template>
   <div>
-    <TSelect />
-    <TButton />
-    <p class="font-bold">Primera banda</p>
-    <select v-model="formState.first_band">
-      <option v-for="item in BAND_COLORS" :value="item.value.band">
-        {{ item.name }}
-      </option>
-    </select>
-
-    <p>Segunda banda</p>
-    <select v-model="formState.second_band">
-      <option v-for="item in BAND_COLORS" :value="item.value.band">
-        {{ item.name }}
-      </option>
-    </select>
-
-    <p>Multiplicador</p>
-    <select v-model="formState.multitplier">
-      <option v-for="item in MULTIPLIER_COLORS" :value="item.value.multiplier">
-        {{ item.name }}
-      </option>
-    </select>
-
-    <p>Tolerancia</p>
-    <select v-model="formState.tolerance">
-      <option v-for="item in TOLERANCE_COLORS" :value="item.value.tolerance">
-        {{ item.name }}
-      </option>
-    </select>
+    <TSelect
+      v-model="formState.first_band"
+      label="Primera banda"
+      :options="options('band')"
+    />
+    <TSelect
+      v-model="formState.second_band"
+      label="Segunda banda"
+      :options="options('band')"
+    />
+    <TSelect
+      v-model="formState.multiplier"
+      label="Multiplicador"
+      :options="options('multiplier')"
+    />
+    <TSelect
+      v-model="formState.tolerance"
+      label="Tolerancia"
+      :options="options('tolerance')"
+    />
+    <TButton> Calcular </TButton>
 
     <p>Resultado</p>
     <div>
@@ -66,7 +87,7 @@ const result = computed(() => {
 
       <p>Primera banda: {{ formState.first_band }}</p>
       <p>Segunda banda: {{ formState.second_band }}</p>
-      <p>Multiplicador: {{ formState.multitplier }}</p>
+      <p>Multiplicador: {{ formState.multiplier }}</p>
       <p>Tolerancia: {{ formState.tolerance }}</p>
     </div>
   </div>

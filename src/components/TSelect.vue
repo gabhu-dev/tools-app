@@ -1,8 +1,8 @@
 <template>
   <div class="relative w-max" ref="selectRef">
     <!--Selector label-->
-    <div class="t-select-label">
-      <label for="field">Campo</label>
+    <div v-if="label" class="t-select-label">
+      <label for="field">{{ label }}</label>
     </div>
     <!--Selector box-->
     <div
@@ -39,14 +39,13 @@ import { BiChevronDown } from "vue-icons-plus/bi";
 
 type Option = {
   label: string;
-  value: string;
+  value: any;
 };
 
-const options = ref<Option[]>([
-  { label: "Opción 1", value: "1" },
-  { label: "Opción 2", value: "2" },
-  { label: "Opción 3", value: "3" },
-]);
+const props = defineProps<{
+  label?: string;
+  options: Option[];
+}>();
 
 const isOpen = ref(false);
 const selectedValue = ref("");
@@ -54,7 +53,7 @@ const selectRef = ref<HTMLElement | null>(null);
 const placeholder = "Seleccionar";
 
 const selectedLabel = computed(() => {
-  const selected = options.value.find(
+  const selected = props.options.find(
     (option) => option.value === selectedValue.value
   );
   return selected?.label;
