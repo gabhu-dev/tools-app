@@ -46,7 +46,7 @@
     0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 .t-select-dropdown-option {
-  @apply px-4 py-2 cursor-pointer bg-white w-full rounded-sm;
+  @apply px-4 py-2 cursor-pointer bg-white w-full rounded-sm flex items-center justify-between;
 }
 .t-select-dropdown-option:hover {
   @apply bg-indigo-100;

@@ -7,6 +7,7 @@ import {
 } from "../@constants";
 import TSelect from "./TSelect.vue";
 import TButton from "./TButton.vue";
+import type { IOption } from "../@types";
 
 interface IFormState {
   first_band?: number;
@@ -34,6 +35,7 @@ const options = (type: "band" | "multiplier" | "tolerance") => {
         return {
           label: band.name,
           value: band.value.band,
+          record: band,
         };
       });
     case "multiplier":
@@ -41,6 +43,7 @@ const options = (type: "band" | "multiplier" | "tolerance") => {
         return {
           label: item.name,
           value: item.value.multiplier,
+          record: item,
         };
       });
     case "tolerance":
@@ -48,6 +51,7 @@ const options = (type: "band" | "multiplier" | "tolerance") => {
         return {
           label: item.name,
           value: item.value.tolerance,
+          record: item,
         };
       });
 
@@ -63,7 +67,15 @@ const options = (type: "band" | "multiplier" | "tolerance") => {
       v-model="formState.first_band"
       label="Primera banda"
       :options="options('band')"
-    />
+      class="!w-[260px]"
+    >
+      <template #suffix="{ option }: { option: IOption }">
+        <div
+          class="w-8 h-5 rounded-sm border border-gray-200"
+          :style="`background-color: ${option.record.color};`"
+        ></div>
+      </template>
+    </TSelect>
     <TSelect
       v-model="formState.second_band"
       label="Segunda banda"

@@ -27,7 +27,10 @@
         :key="option.value"
         @click="selectOption(option)"
       >
-        {{ option.label }}
+        <span>
+          {{ option.label }}
+        </span>
+        <slot name="suffix" :option="option"> </slot>
       </li>
     </ul>
   </div>
@@ -36,15 +39,11 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 import { BiChevronDown } from "vue-icons-plus/bi";
-
-type Option = {
-  label: string;
-  value: any;
-};
+import type { IOption } from "../@types";
 
 const props = defineProps<{
   label?: string;
-  options: Option[];
+  options: IOption[];
 }>();
 
 const isOpen = ref(false);
@@ -63,7 +62,7 @@ const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
 };
 
-const selectOption = (option: Option) => {
+const selectOption = (option: IOption) => {
   selectedValue.value = option.value;
   isOpen.value = false;
 };

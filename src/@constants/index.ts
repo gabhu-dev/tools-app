@@ -1,4 +1,6 @@
-const COLORS = [
+import type { IColor } from "../@types";
+
+const COLORS: IColor[] = [
   {
     name: "Negro",
     color: "#000000",
