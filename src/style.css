@@ -37,6 +37,9 @@
 .t-select-placeholder {
   @apply mr-4;
 }
+.t-select-text {
+  @apply inline-flex;
+}
 .t-select-placeholder {
   @apply text-gray-500;
 }

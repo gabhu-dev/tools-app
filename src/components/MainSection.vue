@@ -66,30 +66,30 @@ const options = (type: "band" | "multiplier" | "tolerance") => {
     <TSelect
       v-model="formState.first_band"
       label="Primera banda"
+      type="band"
       :options="options('band')"
       class="!w-[260px]"
-    >
-      <template #suffix="{ option }: { option: IOption }">
-        <div
-          class="w-8 h-5 rounded-sm border border-gray-200"
-          :style="`background-color: ${option.record.color};`"
-        ></div>
-      </template>
-    </TSelect>
+    />
     <TSelect
       v-model="formState.second_band"
       label="Segunda banda"
+      type="band"
       :options="options('band')"
+      class="!w-[260px]"
     />
     <TSelect
       v-model="formState.multiplier"
       label="Multiplicador"
+      type="multiplier"
       :options="options('multiplier')"
+      class="!w-[260px]"
     />
     <TSelect
       v-model="formState.tolerance"
       label="Tolerancia"
+      type="tolerance"
       :options="options('tolerance')"
+      class="!w-[260px]"
     />
     <TButton> Calcular </TButton>
 

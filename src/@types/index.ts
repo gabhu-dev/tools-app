@@ -11,5 +11,7 @@ export interface IColor {
 export interface IOption {
   label: string;
   value: any;
-  record?: any;
+  record?: IColor;
 }
+
+export type TOptionType = "band" | "multiplier" | "tolerance";
